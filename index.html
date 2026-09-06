@@ -39,10 +39,46 @@
   .about-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:clamp(40px,7vw,92px);align-items:center}
   .about-portrait{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 42%}
   @media(max-width:800px){.about-layout{grid-template-columns:1fr}.about-portrait{width:min(100%,360px)}}
+
+  /* Keep the desktop composition; adapt reading and image sizes to small screens. */
+  section[id]{scroll-margin-top:84px}
+  @media(max-width:900px){
+    .portfolio-root{overflow-x:clip!important}
+    header > div{height:auto!important;min-height:66px;flex-wrap:wrap;gap:0!important;padding-top:14px!important}
+    header > div > a{flex:none;margin-bottom:10px}
+    header nav{width:100%;min-width:0;overflow-x:auto;gap:22px!important;padding:0 0 6px;overscroll-behavior-x:contain}
+    header nav a{flex:none;white-space:nowrap;display:flex;align-items:center;min-height:44px}
+    section[id]{scroll-margin-top:124px}
+    .project-heading{grid-template-columns:minmax(0,1fr)!important;align-items:start!important}
+    .project-heading > div,.project-heading dd{min-width:0;overflow-wrap:anywhere}
+  }
+  @media(max-width:700px){
+    .home-copy > p:first-child{font-size:10px!important;letter-spacing:.18em!important}
+    .home-copy h1 > span:first-child{font-size:clamp(2.4rem,9.5vw,3.5rem)!important;line-height:1.08!important}
+    .home-copy h1 > span:last-child{line-height:1.5!important}
+    .home-art{width:min(78%,320px);max-width:100%;margin-top:30px}
+    .book-layout,.book-gallery{grid-template-columns:minmax(0,1fr)!important}
+    .book-gallery{gap:22px!important}
+    .comics-grid{gap:10px}
+    .food-series-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+    .fragrance-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+    .fragrance-grid > div:not(.fragrance-products){width:min(100%,360px);justify-self:center}
+    .fragrance-grid > .fragrance-products{grid-template-columns:minmax(0,1fr);gap:22px}
+    .bakery-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+    .character-stack{gap:16px}
+    .about-layout{gap:28px}
+    .about-portrait{width:min(80%,300px);justify-self:center}
+    .contact-links{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px!important;margin-top:28px!important}
+    .contact-links > *{display:flex;align-items:center;justify-content:center;text-align:center;min-width:0;min-height:48px;padding:11px 10px!important;font-size:13px!important;overflow-wrap:anywhere}
+    footer > div{flex-direction:column;gap:6px!important}
+  }
+  @media(max-width:380px){
+    .comics-grid{grid-template-columns:minmax(0,1fr)}
+  }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </helmet>
-<div ref="{{ rootRef }}" style="max-width:100%;overflow-x:hidden">
+<div class="portfolio-root" ref="{{ rootRef }}" style="max-width:100%;overflow-x:hidden">
 
   <header style="position:sticky;top:0;z-index:50;background:rgba(252,250,245,.9);backdrop-filter:saturate(130%) blur(10px);border-bottom:1px solid #E7E2D7">
     <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px);height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px">
@@ -79,7 +115,7 @@
 
   <section id="parrots" style="padding:clamp(56px,9vw,110px) 0">
     <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
-      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
+      <div class="project-heading" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
         <div>
           <div style="display:inline-block;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:.22em;background:#F2C94C;color:#3C300A;padding:4px 10px">PROJECT 01</div>
           <div style="font-family:Poppins,sans-serif;font-weight:300;font-size:clamp(1.8rem,4.6vw,3.2rem);line-height:1.05;margin:14px 0 4px">Life Poetry of Three Parrots</div>
@@ -147,7 +183,7 @@
           <div data-reveal="1" style="position:relative;aspect-ratio:3/4;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/parrot-comic-08.png" alt="漫画诗 08 锅铲指挥家"></div>
           <div data-reveal="1" style="position:relative;aspect-ratio:3/4;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/parrot-comic-09.png" alt="漫画诗 09 裂痕"></div>
         </div>
-        <ul style="list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 40px">
+        <ul style="list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0 40px">
           <li style="padding:11px 0;border-bottom:1px solid #E7E2D7;display:flex;gap:14px;align-items:baseline"><span style="font-family:Poppins,sans-serif;font-size:12px;color:#D4572C;width:26px;flex:none">01</span><span style="font-weight:500">秋天的第一杯奶茶</span></li>
           <li style="padding:11px 0;border-bottom:1px solid #E7E2D7;display:flex;gap:14px;align-items:baseline"><span style="font-family:Poppins,sans-serif;font-size:12px;color:#D4572C;width:26px;flex:none">02</span><span style="font-weight:500">试帽子</span></li>
           <li style="padding:11px 0;border-bottom:1px solid #E7E2D7;display:flex;gap:14px;align-items:baseline"><span style="font-family:Poppins,sans-serif;font-size:12px;color:#D4572C;width:26px;flex:none">03</span><span style="font-weight:500">数羊</span></li>
@@ -196,7 +232,7 @@
           <span style="font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D4572C">D · Operation</span>
           <span style="font-weight:500;font-size:1.02rem">双平台运营数据复盘 + 内容漏斗</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E7E2D7;border:1px solid #E7E2D7">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:1px;background:#E7E2D7;border:1px solid #E7E2D7">
           <div style="background:#FCFAF5;padding:22px 18px">
             <b style="display:block;font-family:Poppins,sans-serif;font-weight:500;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.1">60,000+</b>
             <span style="font-size:13px;color:#7C776D">全网累计获赞</span>
@@ -221,7 +257,7 @@
           <li style="background:#F4F1E9;border-left:3px solid #D4572C;padding:12px 16px;font-size:.94rem"><span style="font-family:Poppins,sans-serif;font-size:10.5px;letter-spacing:.14em;color:#B3441F;display:block;margin-bottom:2px">IP Asset · 沉淀层</span>纯插画 / 绘本进度 / 系列海报 · 不追流量，追身份</li>
         </ul>
         <blockquote style="margin:0;padding:2px 0 2px 20px;border-left:2px solid #1B1A17;font-family:'Noto Serif SC',serif;font-size:1.06rem;color:#33312C;max-width:62ch">粉丝先爱上汤圆本鸟，才会对「汤圆的插画形象」产生情感连接——真实鸟是流量入口，插画是 IP 沉淀。</blockquote>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:28px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px;margin-top:28px">
           <div data-reveal="1" style="position:relative;aspect-ratio:16/9;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/parrot-platform-review.png" alt="双平台数据复盘页"></div>
           <div data-reveal="1" style="position:relative;aspect-ratio:16/9;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden">
             <img class="project-image" src="./assets/images/parrot-content-funnel.png" alt="内容漏斗 + 爆款拆解页">
@@ -233,7 +269,7 @@
 
   <section id="munch" style="padding:clamp(56px,9vw,110px) 0;background:#F4F1E9;border-top:1px solid #E7E2D7">
     <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
-      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
+      <div class="project-heading" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
         <div>
           <div style="display:inline-block;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:.22em;background:#F2C94C;color:#3C300A;padding:4px 10px">PROJECT 02</div>
           <div style="font-family:Poppins,sans-serif;font-weight:300;font-size:clamp(1.8rem,4.6vw,3.2rem);line-height:1.05;margin:14px 0 4px">Munch Monsters</div>
@@ -279,7 +315,7 @@
           <span style="font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D4572C">02 · Prototype</span>
           <span style="font-weight:500;font-size:1.02rem">原型角色</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px">
           <div data-reveal="1" style="position:relative;aspect-ratio:3/4;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/munch-turnaround.png" alt="三视图 / Turnaround"></div>
           <div data-reveal="1" style="position:relative;aspect-ratio:3/4;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/munch-expressions.png" alt="表情设计 / Expressions"></div>
           <div data-reveal="1" style="position:relative;aspect-ratio:3/4;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/munch-figure.png" alt="手办雏形 / Figure Prototype"></div>
@@ -291,7 +327,7 @@
           <span style="font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D4572C">03 · Iteration</span>
           <span style="font-weight:500;font-size:1.02rem">迭代过程 · Draft → Final</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px">
           <div data-reveal="1" style="position:relative;aspect-ratio:16/9;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/munch-iteration.png" alt="迭代过程 · 草稿到定稿"></div>
           <div data-reveal="1" style="position:relative;aspect-ratio:16/9;background:#FFFFFF;border:1px solid #E4DFD3;overflow:hidden"><img class="project-image" src="./assets/images/munch-story.png" alt="绘本叙事内页"></div>
         </div>
@@ -301,7 +337,7 @@
 
   <section id="books" style="padding:clamp(56px,9vw,110px) 0;border-top:1px solid #E7E2D7">
     <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
-      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
+      <div class="project-heading" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
         <div>
           <div style="display:inline-block;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:.22em;background:#F2C94C;color:#3C300A;padding:4px 10px">PROJECT 03</div>
           <div style="font-family:Poppins,sans-serif;font-weight:300;font-size:clamp(1.8rem,4.6vw,3.2rem);line-height:1.05;margin:14px 0 4px">The Super Play Series</div>
@@ -326,7 +362,7 @@
 
       <p style="max-width:60ch;margin:clamp(30px,4vw,46px) 0 0;font-size:1.02rem;color:#3E3B35">同一套「日常物品再想象」的创作方法下的两本绘本——第一册向外探索，第二册向内点亮日常，构成互补的系列。</p>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,48px);align-items:start;padding:clamp(30px,4vw,46px) 0;border-bottom:1px solid #E7E2D7;margin-top:clamp(14px,2vw,24px)">
+      <div class="book-layout" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,48px);align-items:start;padding:clamp(30px,4vw,46px) 0;border-bottom:1px solid #E7E2D7;margin-top:clamp(14px,2vw,24px)">
         <div>
           <h4 style="margin:0;font-weight:300;font-family:Poppins,sans-serif;font-size:clamp(1.4rem,3vw,2rem);line-height:1.1">Wander of the Antenna Hero</h4>
           <div style="font-weight:700;font-size:1.05rem;margin:.3em 0 0">天线超人漫游记 · 第一册</div>
@@ -334,14 +370,14 @@
           <p style="color:#3E3B35;font-size:.96rem;max-width:48ch">一本以「日常物品再想象」为创作方法的原创出版绘本。主角叮零是能在厨房接收奇妙信号的小小天线超人——平凡厨具被转译为一组各有性格的角色。项目以「联想—拆解—重组」为视觉路径，把生活物件重塑为可延展的角色谱系与世界观。</p>
           <p style="color:#7C776D;font-size:.86rem;margin:0">12 个跨页 · 1 套实体书</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%">
+        <div class="book-gallery" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%">
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/book-antenna-cover.png" alt="天线超人漫游记 · 封面"></div>
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/book-antenna-spreads.png" alt="天线超人漫游记 · 内页精选跨页"></div>
           <div class="unframed-image" data-reveal="1" style="grid-column:1/-1"><img class="project-image" src="./assets/images/books-photo.jpg" alt="超级游戏力系列 · 实体书实拍"></div>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,48px);align-items:start;padding:clamp(30px,4vw,46px) 0">
+      <div class="book-layout" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,48px);align-items:start;padding:clamp(30px,4vw,46px) 0">
         <div>
           <h4 style="margin:0;font-weight:300;font-family:Poppins,sans-serif;font-size:clamp(1.4rem,3vw,2rem);line-height:1.1">Wondrous Ball in the Bathroom</h4>
           <div style="font-weight:700;font-size:1.05rem;margin:.3em 0 0">浴室里的奇妙舞会 · 第二册</div>
@@ -349,7 +385,7 @@
           <p style="color:#3E3B35;font-size:.96rem;max-width:48ch">故事的舞台是一间普通浴室——当灯亮起，沐浴球、浴刷、橡皮鸭、香皂瓶集结成一支只在洗澡时刻登场的舞会队伍。延续系列「联想—拆解—重组」的视觉路径，把每一件洗漱用品塑造为有性格、有姿态、有出场顺序的角色。<br><span style="color:#7C776D;font-size:.86rem">角色示例：沐浴露瓶→企鹅；洗脸巾+夹子→兔子；漱口杯→大象；毛巾→鳄鱼弟弟</span></p>
           <p style="color:#7C776D;font-size:.86rem;margin:0">12 个跨页 · 1 套实体书</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%">
+        <div class="book-gallery" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%">
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/book-bathroom-cover.png" alt="浴室里的奇妙舞会 · 封面"></div>
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/book-bathroom-spreads.png" alt="浴室里的奇妙舞会 · 内页精选"></div>
           <div class="unframed-image" data-reveal="1" style="grid-column:1/-1"><img class="project-image" src="./assets/images/book-exhibition.png" alt="浴室里的奇妙舞会 · 展览现场"></div>
@@ -360,7 +396,7 @@
 
   <section id="food" style="padding:clamp(56px,9vw,110px) 0;background:#F4F1E9;border-top:1px solid #E7E2D7">
     <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
-      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
+      <div class="project-heading" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end">
         <div>
           <div style="display:inline-block;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:.22em;background:#F2C94C;color:#3C300A;padding:4px 10px">PROJECT 04</div>
           <div style="font-family:Poppins,sans-serif;font-weight:300;font-size:clamp(1.8rem,4.6vw,3.2rem);line-height:1.05;margin:14px 0 4px">Homology of Medicine and Food</div>
@@ -409,7 +445,7 @@
           <span style="font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D4572C">Process · Sketch → Color → Final</span>
           <span style="font-weight:500;font-size:1.02rem">创作过程</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px">
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/chenpi-sketch.png" alt="陈皮 · 草稿"></div>
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/chenpi-color.png" alt="陈皮 · 上色"></div>
           <div class="unframed-image" data-reveal="1"><img class="project-image" src="./assets/images/chenpi-final.png" alt="陈皮 · 成稿"></div>
@@ -424,7 +460,7 @@
         <div>
           <h2 style="font-family:Poppins,sans-serif;font-weight:300;font-size:clamp(1.8rem,4.4vw,3rem);margin:0 0 26px">About</h2>
           <p style="max-width:58ch;font-size:1.06rem;color:#3E3B35;margin:0">刘力源 / Leona，四川美术学院美术与书法研究生在读，曾于佛罗伦萨美术学院交流。研究方向<span style="font-family:'Noto Serif SC',serif;font-style:italic;color:#B3441F">「五感转译」</span>——用画面、文字与节奏，把感受译成看得见的日常。具备原创 IP、绘本与插画创作能力，专注于内容、产品和真实用户之间的实验：把创意变成可以被看见、被使用、被验证的东西。</p>
-          <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:12px">
+          <div class="contact-links" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:12px">
             <a href="https://xhslink.cn/m/5kULQagxZkr" target="_blank" rel="noopener" style="font-family:Poppins,sans-serif;font-size:14px;background:#D4572C;color:#FFFFFF;border:1px solid #D4572C;border-radius:100px;padding:11px 22px;transition:.2s" style-hover="background:#B3441F;border-color:#B3441F">小红书 · 一颗汤圆</a>
             <button type="button" data-copy-email="badyuanzi416@gmail.com" aria-live="polite" title="复制邮箱地址" style="background:transparent;cursor:pointer;line-height:inherit;font-family:Poppins,sans-serif;font-size:14px;color:#1B1A17;border:1px solid #1B1A17;border-radius:100px;padding:11px 22px;transition:.2s" style-hover="background:#1B1A17;color:#FCFAF5">Email</button>
             <a href="https://pm.leona-liu.com" target="_blank" rel="noopener" style="font-family:Poppins,sans-serif;font-size:14px;color:#1B1A17;border:1px solid #1B1A17;border-radius:100px;padding:11px 22px;transition:.2s" style-hover="background:#1B1A17;color:#FCFAF5">COMI 项目 →</a>
